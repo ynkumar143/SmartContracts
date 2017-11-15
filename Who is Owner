@@ -41,6 +41,58 @@ value 	0 wei
 
 Now data is showing owner information. : 0: address: 0x279a0b9ac8d6174b7b4f8e636d10803513a08cdb
 
+2. Hard-Coding the owner information.
+
+
+pragma solidity ^0.4.11;
+
+contract MyToken{
+
+    uint public data_add;
+
+
+    function addData(uint data_add_){
+        if(msg.sender == 0x279a0b9ac8d6174b7b4f8e636d10803513a08cdb)
+            data_add = data_add_;
+    }
+}
+
+In this the contract deployment will show an error. However, compilation is successful. The error is shown as below.
+
+Error: Unknown address - unable to assign transaction for this address.
+
+Why is it so?
+The address is hex literal, so is added to bytecode when compiled. and making it impossible to sign the transaction. We have to prepare the contract in advance.
+
+
+3. How to prepare owner address in prior?
+
+Now i will combine both 1st and 2nd cases. and try to set the address of the owner.
+
+pragma solidity ^0.4.11;
+
+contract MyToken{
+
+    uint public data_add;
+    address public owner = msg.sender;
+
+
+    function addData(uint data_add_){
+        if(msg.sender == owner)
+            data_add = data_add_;
+    }
+
+
+    function setOwner(address owner_){
+        if(msg.sender == owner_)
+            owner = owner_;
+    }
+}
+
+The only difference here is that we are providing a flexibility to change the owner of contract without hardcoding in contract functionality.
+
+
+
 
 
 
