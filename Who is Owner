@@ -1,0 +1,47 @@
+On a adding a new contract into the chain a new account is created that can't be changed which will be loaded into a VM runs the constructor part, initialize fields on creating objects that refer the contract(byte) code and database.
+Owner of the contract will be the one the contract is deployed. Owner for a contract can be set as below.
+
+1. Using direct owner information from the wallet address where contract is deployed.
+
+
+pragma solidity ^0.4.11;
+
+contract MyToken{
+
+    address public data;
+
+    function getAddress() returns (address){
+        data = msg.sender;
+    }
+}
+
+
+My Address in MetaMask is : 0x279a0B9ac8D6174B7b4f8E636D10803513A08Cdb
+
+I am running the contract and trying to see the data is filling correctly or not.
+
+Initially my Address in data variable is : "0: address: 0x0"
+
+Below Transaction approval process.
+
+transact to browser/MyToken.sol:MyToken.getAddress pending ...
+[block:2073960 txIndex:4] from:0x279...08cdb, to:browser/MyToken.sol:MyToken.getAddress() 0x814...bd9d9, value:0 wei, 0 logs, data:0x38c...c4831, hash:0x39a...2fef1
+
+status 	0x1 Transaction mined and execution succeed
+from 	0x279a0b9ac8d6174b7b4f8e636d10803513a08cdb
+to 	browser/MyToken.sol:MyToken.getAddress() 0x81440814ef8aa3ca6abf5a77800436916ebbd9d9
+gas 	41736 gas
+transaction cost 	41736 gas
+hash 	0x39a461a4f40739defc8eef0ffa15c029653943f22a6b0d884a98084eaf92fef1
+input 	0x38cc4831
+decoded input 	{}
+decoded output 	 -
+logs 	[]
+value 	0 wei
+
+Now data is showing owner information. : 0: address: 0x279a0b9ac8d6174b7b4f8e636d10803513a08cdb
+
+
+
+
+
