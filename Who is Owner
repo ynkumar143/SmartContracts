@@ -91,7 +91,9 @@ contract MyToken{
 
 The only difference here is that we are providing a flexibility to change the owner of contract without hardcoding in contract functionality.
 
+4. How to check whethere the account holder is owner or not?
 
+This is mainly used to add balance into the contract. In case of deposit functions.
 
 
 
